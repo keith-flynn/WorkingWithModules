@@ -1,18 +1,18 @@
-(function () {
-  
-  function render() {
-    var list = document.querySelector("#sessions");
-    if (!list) return;
-    list.innerHTML = sessionTemplate(data.listItems);
-  }
+import getSessions, {sessionTemplate} from "./sessionRepository";
+import {sessionTemplate, errorMessage} from "./template";
 
-  var data = {
-    listItems: [],
-  };
+function render() {
+  var list = document.querySelector("#sessions");
+  if (!list) return;
+  list.innerHTML = sessionTemplate(data.listItems);
+}
 
-  getSessions().then((sessions) => {
-    console.log("promises!");
-    data.listItems = sessions;
-    render();
-  });
-})();
+var data = {
+  listItems: [],
+};
+
+getSessions().then((sessions) => {
+  console.log("promises!");
+  data.listItems = sessions;
+  render();
+});
